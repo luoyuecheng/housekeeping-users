@@ -1,0 +1,7 @@
+{
+  "name": "housekeepingUsers",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
