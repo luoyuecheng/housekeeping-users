@@ -1,7 +1,8 @@
 {
   "name": "housekeepingUsers",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

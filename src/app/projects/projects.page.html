@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-item class="header">
+      <ion-searchbar></ion-searchbar>
+      <ion-icon *ngIf="outline; else addOutline" name="close-outline" (click)="handleOutline(false)"></ion-icon>
+      <ng-template #addOutline>
+        <ion-icon name="add-outline" (click)="handleOutline(true)" id="main"></ion-icon>
+      </ng-template>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="content">
+    <ion-row>
+      <ion-col class="project-menu" size="3">
+        <!-- 左侧服务列表 -->
+        <ion-list>
+          <ion-item
+            *ngFor="let project of projects"
+            [class.active]="project.key === activeProject.key"
+            (click)="handleSwitchProject(project)"
+          >
+            <ion-label>{{ project.title }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-img src="https://images.daojia.com/house/neves/757ecde87ddc0efa38409d69e8fa7b94.png"></ion-img>
+        <ion-grid *ngFor="let services of activeProject.children">
+          <ion-row>
+            <ion-col>
+              <ion-label class="services-classification">{{ services.title }}</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" *ngFor="let item of services.children" (click)="handleService(item)">
+              <span class="popular-services services-cleaning" role="img" aria-label="paw" [style.backgroundColor]="item.background">{{ item.icon }}</span>
+              <ion-label class="services-title">{{ item.title }}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

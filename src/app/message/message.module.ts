@@ -1,11 +1,12 @@
 import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
+import { MessagePage } from './message.page'; 
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { MessagePageRoutingModule } from './message-routing.module'
 
 @NgModule({
   imports: [
@@ -13,8 +14,9 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    HomePageRoutingModule
+    RouterModule.forChild([{ path: '', component: MessagePage }]),
+    MessagePageRoutingModule,
   ],
-  declarations: [HomePage]
+  declarations: [MessagePage]
 })
-export class HomePageModule {}
+export class MessagePageModule {}
