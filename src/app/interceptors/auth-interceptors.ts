@@ -36,6 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
       url,
       headers: req.headers.set('Authorization', token),
     });
+    console.log('auth', authInfo)
 
     // 用复制的请求头发送请求到下一个拦截器
     return next.handle(authReq).pipe(

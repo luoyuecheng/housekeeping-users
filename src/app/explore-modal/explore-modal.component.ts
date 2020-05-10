@@ -80,23 +80,29 @@ export class ExploreModalComponent implements OnInit {
 
   // 下单
   onSubmit() {
-    const goodsId = this.order.id;
+    this.navCtrl.navigateForward('/reservation-modal', { queryParams: { ...this.order } });
+
     // 先加入购物车
-    this.orderService.postRequest(orderInterface.addCard, { goodsId }).subscribe((data: any) => {
-      if (!data || data.errno) {
-        return void 0;
-      }
-      // 提交订单
-      this.orderService.postRequest(orderInterface.submitOrder, { addressId: data.id }).subscribe((data: any) => {
-        if (!data || data.errno) {
-          return void 0;
-        }
-        this.navCtrl.navigateRoot('//tabs/aboutMe/order', { queryParams: { name: 'orders', title: '全部订单' } });
-      })
-    })
+    // this.orderService.postRequest(orderInterface.addCard, { goodsId }).subscribe((data: any) => {
+    //   if (!data || data.errno) {
+    //     return void 0;
+    //   }
+    //   // 提交订单
+    //   this.orderService.postRequest(orderInterface.submitOrder, { addressId: data.id }).subscribe((data: any) => {
+    //     if (!data || data.errno) {
+    //       return void 0;
+    //     }
+    //     this.navCtrl.navigateRoot('/tabs/aboutMe/order', { queryParams: { name: 'orders', title: '全部订单' } });
+    //   })
+    // })
   }
 
   handleBack() {
+    if (this.modalType === this.detailType) {
+      this.modalType = this.listType;
+      this.searchOrders();
+      return void 0;
+    }
     this.navCtrl.back();
   }
 }

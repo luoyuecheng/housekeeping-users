@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item class="header">
+      <ion-icon name="chevron-back-outline" (click)="handleBack()"></ion-icon>
+      <ion-title>{{ title?.name }}</ion-title>
+      <ion-text slot="end" *ngIf="title.key === 1" (click)="modify()">新增地址</ion-text>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="title.key === 1">
+  <ion-item *ngFor="let item of addressList" (click)="modify(item)">
+    <ion-label>
+      <div>{{ item?.addressDetail }}</div>
+      <div>{{ item?.name }}&emsp;{{ item?.tel }}</div>
+    </ion-label>
+    <ion-text>
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-text>
+  </ion-item>
+</ion-content>
+
+<ion-content *ngIf="title?.key === 2 || title?.key === 3">
+  <ion-item>
+    <ion-label>联系人</ion-label>
+    <ion-input [(ngModel)]="addressDetail.name" placeholder="请输入联系人"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>手机号</ion-label>
+    <ion-input [(ngModel)]="addressDetail.tel" placeholder="请输入手机号"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>服务地址</ion-label>
+    <ion-input [(ngModel)]="addressDetail.addressDetail" placeholder="请填写详细地址:如街道/楼牌号等"></ion-input>
+  </ion-item>
+
+  <ion-toolbar>
+    <ion-button expand="full" (click)="saveAddress()">保存地址</ion-button>
+  </ion-toolbar>
+</ion-content>

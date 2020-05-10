@@ -30,7 +30,12 @@ export class AboutMePage {
 
     switch (key) {
       case 'orders':
+        // 查看全部订单
         this.navCtrl.navigateForward('/tabs/aboutMe/order', { queryParams });
+        break;
+      case 'address':
+        // 查看地址
+        this.navCtrl.navigateForward('/address');
         break;
       default:
         this.navCtrl.navigateForward('/modal', { queryParams });

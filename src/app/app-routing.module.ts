@@ -13,10 +13,23 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'reservation-modal',
+    loadChildren: () => import('./reservation-modal/reservation-modal.module').then(m => m.ReservationModalPageModule)
+  },
+  {
+    path: 'address',
+    loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
+  },
+  {
+    path: 'reserve-order',
+    loadChildren: () => import('./reserve-order/reserve-order.module').then(m => m.ReserveOrderPageModule)
+  }
 
 ];
 

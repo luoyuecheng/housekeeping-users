@@ -2,16 +2,20 @@
   <ion-toolbar>
     <ion-item class="header">
       <ion-icon name="chevron-back-outline" (click)="handleBack()"></ion-icon>
-      <ion-title>{{ title }}</ion-title>
+      <ion-title>{{ order?.name || '下单' }}</ion-title>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item class="select-address" (click)="handleItem('orders')">
+  <ion-item class="select-address">
     <ion-label>请选择服务地址</ion-label>
-    <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon>
-    </ion-text>
+    <!-- <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-text> -->
+    <ion-select [value]="values.addressId">
+      <ion-select-option *ngFor="let item of addressList" [value]="item?.id">{{ item?.addressDetail }}</ion-select-option>
+      <ion-select-option *ngIf="!addressList || !addressList.length" value="" disabled>请前往"我的-我的地址"配置服务地址</ion-select-option>
+    </ion-select>
   </ion-item>
 
   <!-- <ion-list class="count">
