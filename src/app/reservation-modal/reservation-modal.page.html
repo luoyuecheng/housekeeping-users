@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-item class="header">
+      <ion-icon name="chevron-back-outline" (click)="handleBack()"></ion-icon>
+      <ion-title>{{ title }}</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="select-address" (click)="handleItem('orders')">
+    <ion-label>请选择服务地址</ion-label>
+    <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-text>
+  </ion-item>
+
+  <!-- <ion-list class="count">
+    <ion-item>
+      <ion-label>选择服务次数</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="handleBuy()">单次预约</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="handleBuy()">两周一次</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="handleBuy()">一周一次</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="handleBuy()">一周多次</ion-button>
+    </ion-item>
+  </ion-list> -->
+
+  <ion-item>
+    <ion-label>选择服务时长</ion-label>
+    <ion-select [value]="values.duration" okText="确认" cancelText="取消">
+      <ion-select-option value="2">2 小时</ion-select-option>
+      <ion-select-option value="3">3 小时</ion-select-option>
+      <ion-select-option value="4">4 小时</ion-select-option>
+      <ion-select-option value="5">5 小时</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>选择服务开始时间</ion-label>
+    <ion-datetime
+      [value]="values.startTime"
+      display-timezone="Asia/Shanghai"
+      displayFormat="YYYY-MM-DD HH"
+      monthShortNames="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12"
+      (ionChange)="handleDateChange($event)"
+      doneText="确认"
+      cancelText="取消"
+    ></ion-datetime>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="handleOk()">确认</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -2,56 +2,79 @@ import { Component } from '@angular/core';
 import { Params } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
+import { OrderService } from '../services/order.service';
+import { orderInterface } from '../services/order.interface';
+
+export interface Category {
+  id: string | number;
+  name: string;
+  [key: string]: any;
+}
+
 @Component({
   selector: 'app-projects',
   templateUrl: 'projects.page.html',
   styleUrls: ['projects.page.scss']
 })
 export class ProjectsPage {
-  public projects = [
-    {
-      key: 'popular',
-      title: '热门服务',
-      banner: '图片',
-      children: [
-        {
-          title: '精品鲜花',
-          children: [
-            { key: 'rose', title: '精品玫瑰', icon: '图片' },
-            { key: 'lily', title: '精品百合', icon: '图片' },
-            { key: 'carnation', title: '精品康乃馨', icon: '图片' },
-            { key: 'roseFlower', title: '玫瑰花', icon: '图片' },
-          ],
-        }
-      ],
-    },
-    {
-      key: 'cleaning',
-      title: '保洁清洗',
-      banner: '日常保洁',
-      children: [
-        {
-          title: '日常保洁',
-          children: [
-            { key: 'dailyCleaning', title: '日常保洁', icon: '图片' },
-            { key: 'cycleCleaning', title: '周期保洁', icon: '图片' },
-            {  key: 'houseCleaning', title: '全屋大扫除', icon: '图片' },
-          ],
-        }
-      ],
-    },
-  ];
-
-  public activeProject = this.projects[0];
+  // 一级类目
+  firstCategoryList: Array<Category> = [];
+  // 二级类目
+  secondCategoryList: Array<Category> = [];
+  // 选择的一级类型
+  activeCategory: Category;
 
   constructor(
     private navCtrl: NavController,
-  ) {}
+    private orderService: OrderService,
+  ) {
+    // 查询一级类目
+    this.orderService.getRequest(orderInterface.getfirstcategory).subscribe((data: any) => {
+      if (!data && data.errno) {
+        return void 0;
+      }
+
+      const { data: firstCategory = [] } = data;
+
+      if (firstCategory.length) {
+        this.activeCategory = firstCategory[0];
+        this.loadCategory(this.activeCategory);
+      }
+
+      this.firstCategoryList = firstCategory;
+    })
+  }
+
+  // 加载二级类目
+  loadCategory(firstCategory: Category) {
+    if (!firstCategory) {
+      return void 0;
+    }
+
+    this.activeCategory = firstCategory;
+
+    this.orderService.getRequest(orderInterface.getsecondcategory, { id: firstCategory.id }).
+      subscribe((data: any) => {
+        if (!data || data.errno) {
+          return void 0;
+        }
+
+        this.secondCategoryList = data.data || [];
+      })
+  }
 
   // 选择左侧服务菜单
-  handleSwitchProject(project) {
+  handleSwitchProject(category: Category) {
     // 切换选中项目
-    this.activeProject = project;
+    this.activeCategory = category;
+  }
+
+  // 点击二级类型，查看订单
+  handleCategory(category: Category) {
+    const queryParams: Params = {
+      ...category
+    }
+    this.navCtrl.navigateForward('/modal', { queryParams });
   }
 
   // 点击具体服务项目

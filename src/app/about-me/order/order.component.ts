@@ -6,6 +6,10 @@ import {
   NavController,
 } from '@ionic/angular';
 
+import {
+  OrderService
+} from '../../services/order.service';
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -18,6 +22,7 @@ export class OrderComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private navCtrl: NavController,
+    private orderService: OrderService,
   ) { }
 
   ngOnInit() {
@@ -26,6 +31,8 @@ export class OrderComponent implements OnInit {
       this.title = param.title;
       this.name = param.name;
     })
+
+    // this.orderService.getArticle(1);
   }
 
   handleBack() {

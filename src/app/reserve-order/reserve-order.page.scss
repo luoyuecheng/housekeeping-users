@@ -1,0 +1,38 @@
+ion-item {
+  --inner-border-width: 0;
+}
+
+ion-header {
+  ion-item {
+    --padding-start: 0;
+  }
+}
+
+ion-content {
+  --background: rgba(0, 0, 0, .07);
+
+  ion-card {
+    box-shadow: none;
+    transform: translateZ(10px);
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    border-radius: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    ion-text {
+      margin-left: 5px;
+    }
+  }
+}
+
+ion-footer {
+  ion-title {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    width: 50%;
+    left: 50%;
+    --color: #fff;
+    background: rgb(237, 88, 7);
+  }
+}

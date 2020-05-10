@@ -1,0 +1,49 @@
+ion-content {
+  --background: rgba(0, 0, 0, .07);
+
+  ion-item {
+    margin-bottom: 5px;
+  }
+}
+
+ion-item {
+  --inner-border-width: 0;
+}
+
+ion-header {
+  ion-item {
+    --padding-start: 0;
+  }
+}
+
+.count {
+  margin-bottom: 5px;
+
+  ion-item {
+    margin-bottom: 0;
+  }
+
+  ion-label {
+    flex: 1;
+  }
+
+  ion-button {
+    display: block;
+    --border-radius: 0;
+    width: 100%;
+    height: 75%;
+  }
+}
+
+ion-footer {
+  ion-toolbar {
+    ion-button {
+      display: block;
+      --border-radius: 5px;
+      --background: rgb(237, 88, 7);
+      --background-activated: rgb(237, 88, 7);
+      --background-focused: rgb(237, 88, 7);
+      --background-hover: rgb(237, 88, 7);
+    }
+  }
+}

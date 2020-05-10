@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-item class="header">
+      <ion-icon name="chevron-back-outline" (click)="handleBack()"></ion-icon>
+      <ion-title>预约订单</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>{{ title }}</ion-item>
+    <ion-item>
+      <ion-label>{{ values?.startTime }}</ion-label>
+      <ion-text>{{ values?.duration }} 小时</ion-text>
+      <ion-text>120 元</ion-text>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>服务地址信息</ion-item>
+    <ion-item>
+      <ion-label>服务地址: </ion-label>
+      <ion-text></ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>联系电话: </ion-label>
+      <ion-text></ion-text>
+    </ion-item>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-text>付款金额: 120</ion-text>
+    <ion-title (click)="handlePayment()">去支付</ion-title>
+  </ion-toolbar>
+</ion-footer>
