@@ -15,6 +15,7 @@ export class ReserveOrderPage implements OnInit {
   public name: string;
   public values: { [key: string]: any };
   public addressDetail: Address;
+  public productId: string|number;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class ReserveOrderPage implements OnInit {
       this.name = param.name;
       this.id = param.id;
       this.price = param.price;
+      this.productId = param.productId;
       this.values = param.values ? JSON.parse(param.values) : {};
 
       if (this.values.addressId) {
@@ -60,7 +62,7 @@ export class ReserveOrderPage implements OnInit {
               goodsSn: this.name,
               price: this.price,
               number: 1,
-              productId: 192,
+              productId: this.productId,
               shipSn: this.values.startTime,
               shipChannel: this.values.duration,
             };
