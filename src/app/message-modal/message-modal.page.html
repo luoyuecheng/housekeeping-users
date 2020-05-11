@@ -16,4 +16,8 @@
       <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
   </ion-card>
+
+  <ion-card *ngIf="!messageList || !messageList.length">
+    <p class="no-goods">当前没有商家服务。</p>
+  </ion-card>
 </ion-content>
