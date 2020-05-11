@@ -38,6 +38,9 @@
         <ion-button class="receive" slot="end" (click)="handleService(item)">查看详情</ion-button>
       </ion-item>
     </ion-card>
+    <ion-card *ngIf="!orders || !orders.length">
+      <p class="no-goods">当前没有商家服务。</p>
+    </ion-card>
   </ng-container>
 
   <ng-container *ngIf="modalType === 'detail'">

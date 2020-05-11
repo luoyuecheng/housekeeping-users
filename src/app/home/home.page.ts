@@ -25,30 +25,30 @@ export class HomePage {
     // slides
     [
       // item
-      { key: 'cleaning', name: '日常保洁', iconUrl: 'https://images.daojia.com/dop/custom/f3e9130d1750ebab91caa9b86dbbd84e.png', background: '#ff5e5e' },
-      { key: 'wash', name: '清洗养护', iconUrl: 'https://images.daojia.com/dop/custom/8499ebb5c347e2940a4ad2922d3c8ed8.png', background: '#d600f4' },
-      { key: 'babysitter', name: '保姆', iconUrl: 'https://images.daojia.com/dop/custom/d5aa07f3de1c52ff2eb8ad51e1c1c154.png', background: '#f14503' },
-      { key: 'maternityMatron', name: '月嫂', iconUrl: 'https://images.daojia.com/dop/custom/d5aa07f3de1c52ff2eb8ad51e1c1c154.png', background: '#e01428' },
-      { key: 'parenting', name: '育儿嫂', iconUrl: 'https://images.daojia.com/Category/Back/Pic/1d151f1eb2b85b32de1b511cd65e9f46.png', background: '#ed5807' },
-      { key: 'exterminator', name: '除虫灭鼠', iconUrl: 'https://images.daojia.com/dop/custom/9546de0c00f6e3d3d929c67752c05765.jpg', background: '#e01428' },
-      { key: 'formaldehyde', name: '除甲醛', iconUrl: 'https://images.daojia.com/dop/custom/9546de0c00f6e3d3d929c67752c05765.jpg', background: '#4a4aff' },
-      { key: 'laundry', name: '洗衣洗鞋', iconUrl: 'https://images.daojia.com/dop/custom/9546de0c00f6e3d3d929c67752c05765.jpg', background: '#d500d5' },
-      { key: 'homeTextile', name: '洗窗帘', iconUrl: 'https://images.daojia.com/dop/custom/d8bee5c0c7c859fe16ec4048bafe4472.png', background: '#f14503' },
-      { key: 'massage', name: '中医按摩', iconUrl: 'https://images.daojia.com/dop/custom/d8bee5c0c7c859fe16ec4048bafe4472.png', background: '#e01428' }
+      { key: 1008002, name: '日常保洁', iconUrl: 'http://yanxuan.nosdn.127.net/8bbcd7de60a678846664af998f57e71c.png' },
+      { key: '1008009', name: '家居清洁', iconUrl: 'http://yanxuan.nosdn.127.net/243e5bf327a87217ad1f54592f0176ec.png' },
+      { key: '1005009', name: '保姆', iconUrl: 'http://yanxuan.nosdn.127.net/e8b67fe8b8db2ecc2e126a0aa631def0.png' },
+      { key: '1005008', name: '月嫂', iconUrl: 'http://yanxuan.nosdn.127.net/f109afbb7e7a00c243c1da29991a5aa3.png' },
+      { key: '1005007', name: '育儿嫂', iconUrl: 'http://yanxuan.nosdn.127.net/4aab4598017b5749e3b63309d25e9f6b.png' },
+      { key: '1008008', name: '家电清洗', iconUrl: 'http://yanxuan.nosdn.127.net/927bc33f7ae2895dd6c11cf91f5e3228.png' },
+      { key: '1008009', name: '家居清洁', iconUrl: 'http://yanxuan.nosdn.127.net/243e5bf327a87217ad1f54592f0176ec.png' },
+      { key: '1008016', name: '家居保养', iconUrl: 'http://yanxuan.nosdn.127.net/c48e0d9dcfac01499a437774a915842b.png' },
+      { key: '1005013', name: '电路维修', iconUrl: 'http://yanxuan.nosdn.127.net/2919b0d6eec79182cca31dc827f4d00a.png' },
+      { key: '1008014', name: '厨卫洁具', iconUrl: 'http://yanxuan.nosdn.127.net/db48a1db4daab74233656caaea4a06f3.png' }
     ],
     // slide
     [
       // item row
-      { key: 'houses', name: '房屋维修', iconUrl: 'https://images.daojia.com/dop/custom/01a443c96c08e02cd32ddd9958f82292.png', background: '#e01428' },
-      { key: 'homeAppliances', name: '家电维修', iconUrl: 'https://images.daojia.com/dop/custom/d8bee5c0c7c859fe16ec4048bafe4472.png', background: '#ff8000' },
-      { key: 'installation', name: '上门安装', iconUrl: 'https://images.daojia.com/dop/custom/b74c0dfc11bfb223a280f2b75751cb92.jpg', background: '#5b5be3' },
-      { key: 'move', name: '搬家', iconUrl: 'https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png', background: '#b87272' },
-      { key: 'pullGoods', name: '拉货', iconUrl: 'https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png', background: '#ff5e5e' },
-      { key: 'medicalCare', name: '医护上门', iconUrl: 'https://images.daojia.com/dop/custom/aea096d1e67cf4060b1a503e2cfa71f6.png', background: '#e41b1b' },
-      { key: 'sendFlowers', name: '送花上门', iconUrl: 'https://images.daojia.com/dop/custom/493b81c960bd4f7f0c5f49c7de674ed9.png', background: '#faf305' },
-      { key: 'recycle', name: '上门回收', iconUrl: 'https://images.daojia.com/dop/custom/07e56f5f36df61ed96744d53a5494797.jpg', background: '#ff8000' },
-      { key: 'convenience', name: '便民服务', iconUrl: 'https://images.daojia.com/dop/custom/07e56f5f36df61ed96744d53a5494797.jpg', background: '#d500d5' },
-      { key: 'services', name: '全部服务', iconUrl: 'https://images.daojia.com/dop/custom/4eda295483757df15902a1021e836cff.png', background: '#b87272' }
+      { key: '1005010', name: '房屋维修', iconUrl: 'http://yanxuan.nosdn.127.net/c48e0d9dcfac01499a437774a915842b.png' },
+      { key: '1005010', name: '管道疏通', iconUrl: 'http://yanxuan.nosdn.127.net/6c43063003207168c1d8e83a923e8515.png' },
+      { key: '1005011', name: '开锁换锁', iconUrl: 'http://yanxuan.nosdn.127.net/663f568475c994358bf31bcb67d122fe.png' },
+      { key: '1005012', name: '水路维修', iconUrl: 'http://yanxuan.nosdn.127.net/e050980992725b7932bb3645fe5aec08.png' },
+      { key: '1027001', name: '防水治漏', iconUrl: 'http://yanxuan.nosdn.127.net/60f4ae2beef4754347fa36208f84efab.png' },
+      { key: '1008004', name: '电脑维修', iconUrl: 'http://yanxuan.nosdn.127.net/f123c74f54d9acff0bd1546c60034814.png' },
+      { key: '1010001', name: '手机维修', iconUrl: 'http://yanxuan.nosdn.127.net/20279e1753e4eedc6e347857acda9681.png' },
+      { key: '1010002', name: '办公维修', iconUrl: 'http://yanxuan.nosdn.127.net/364269344ed69adafe1b70ab7998fc50.png' },
+      { key: '1010004', name: '拆除回收', iconUrl: 'http://yanxuan.nosdn.127.net/5197c44b610d786796f955334b55c7a5.png' },
+      { key: 'services', name: '全部服务', iconUrl: 'http://yanxuan.nosdn.127.net/3a8c7ae5b9dc5c1c4b7f2b656abb0279.png' }
     ],
   ];
 
@@ -65,7 +65,7 @@ export class HomePage {
   handleService(service) {
     console.log('service', service)
     const queryParams: Params = {
-      key: service.key,
+      id: service.key,
       name: service.name,
     }
 
