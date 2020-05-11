@@ -16,11 +16,34 @@ export interface AuthInfo {
   authentication: boolean; // 是否认证, 默认为 false
 }
 
+export interface Address {
+  name: string; // 联系人
+  addressDetail: string; // 地址详情
+  tel: string; // 手机号
+  id?: number;
+  [key: string]: any;
+}
+
+// 订单状态: 枚举
+export enum OrderStatus {
+  all = 0, // 全部订单
+  unpaid = 101, // 未接单(新订单)
+  unpaidUserCancel = 102, // 订单未支付，用户取消 (无)
+  unpaidSysCancen = 103, // 订单未支付，超期系统取消 (无)
+  unserved = 201, // 待服务
+  userRefund = 202, // 用户申请退款 (商家未接单，申请退款/取消订单)
+  adminRefund = 203, // 管理员执行退款，确认退款成功 (商家确认退款 / 商家拒单 / 超时未接单自动退单)
+  serving = 301, // 服务中
+  userCompleted = 401, // 用户确认服务完成
+  adminCompleted = 402, // 用户未确认，自动完成
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
   public authInfo: AuthInfo;
+  public addressList: Address[];
 
   constructor(
     private http: HttpClient,
@@ -80,6 +103,25 @@ export class OrderService {
     return true;
   }
 
+  // 获取地址列表
+  getAddressList() {
+    return this.addressList;
+  }
+
+  // 更新地址后，设置地址列表
+  setAddressList(addressList: Address[]) {
+    this.addressList = addressList;
+  }
+
+  // 通过 addressId 查询地址
+  getAddress(addressId: string|number) {
+    if (!this.addressList) {
+      return undefined;
+    }
+
+    return this.addressList.find(item => item.id === addressId);
+  }
+
   // 支付订单
   payment() {
     return this.http.post('', {});
@@ -102,9 +144,6 @@ export class OrderService {
   // 普通 GET 接口
   getRequest(url: string, data?: any) {
     const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: this.authInfo.token,
-      }),
       params: {
         ...data,
       }
@@ -114,12 +153,11 @@ export class OrderService {
 
   // 普通的 POST 接口
   postRequest(url: string, data?: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: this.authInfo.token,
-      }),
-    }
+    return this.http.post(url, { ...data });
+  }
 
-    return this.http.post(url, { ...data }, httpOptions);
+  // PUT 接口
+  putRequest(url: string, data?: any) {
+    return this.http.put(url, { ...data });
   }
 }

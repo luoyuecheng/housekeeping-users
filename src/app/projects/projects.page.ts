@@ -72,7 +72,11 @@ export class ProjectsPage {
   // 点击二级类型，查看订单
   handleCategory(category: Category) {
     const queryParams: Params = {
-      ...category
+      // ...category
+      id: category.id,
+      name: category.name,
+      keywords: category.keywords,
+      pid: category.pid,
     }
     this.navCtrl.navigateForward('/modal', { queryParams });
   }

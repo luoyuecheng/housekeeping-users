@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { OrderService } from '../services/order.service';
+import { OrderService, Address } from '../services/order.service';
 import { orderInterface } from '../services/order.interface';
 import { FormatsService } from '../services/formats';
-import { Address } from '../address/address.page';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -14,9 +13,9 @@ import { Address } from '../address/address.page';
 export class ReservationModalPage implements OnInit {
   public order; // 下单的服务内容
   public values = {
-    addressId: 1,
+    addressId: undefined,
     duration: "2",
-    startTime: this.formatService.formatDate(new Date()),
+    startTime: this.clearDate(new Date()),
   };
   public addressList: Address[];
 
@@ -33,7 +32,6 @@ export class ReservationModalPage implements OnInit {
     })
 
     this.orderService.getRequest(orderInterface.getAddressList).subscribe((data: any) => {
-      console.log(data);
       if (!data || data.errno) {
         return void 0;
       }
@@ -42,6 +40,7 @@ export class ReservationModalPage implements OnInit {
       const { list = [] } = addressData;
 
       this.addressList = list;
+      this.orderService.setAddressList(list);
     })
   }
 
@@ -51,6 +50,11 @@ export class ReservationModalPage implements OnInit {
 
   // 确认
   handleOk() {
+    if (!this.values.addressId) {
+      this.orderService.alertTip({ header: '请选择服务地址' });
+      return void 0;
+    }
+
     const queryParams: Params = {
       ...this.order,
       values: JSON.stringify(this.values),
@@ -58,12 +62,30 @@ export class ReservationModalPage implements OnInit {
     this.navCtrl.navigateForward('reserve-order', { queryParams });
   }
 
-  // 修改时间
-  handleDateChange(event) {
-    const date = event.detail.value;
+  // clear seconds minutes
+  clearDate(date: Date) {
+    date.setMinutes(0);
+    date.setSeconds(0);
 
-    this.values.startTime = this.formatService.formatDate(new Date(date));
+    return this.formatService.formatDate(date);
   }
 
-  // 选择服务地址
+  // 修改时间
+  handleDateChange(event) {
+    const dateString = event.detail.value;
+    const date = new Date(dateString);
+
+    this.values.startTime = this.clearDate(date);
+  }
+
+  selectValue(event, type: string) {
+    const value = event.detail.value;
+    switch (type) {
+      case 'duration':
+        this.values.duration = value;
+        break;
+      case 'addressId':
+        this.values.addressId = value;
+    }
+  }
 }

@@ -80,7 +80,13 @@ export class ExploreModalComponent implements OnInit {
 
   // 下单
   onSubmit() {
-    this.navCtrl.navigateForward('/reservation-modal', { queryParams: { ...this.order } });
+    const queryParams: Params = {
+      id: this.order.id,
+      name: this.order.name,
+      price: this.order.retailPrice,
+      productId: this.order.productId,
+    }
+    this.navCtrl.navigateForward('/reservation-modal', { queryParams });
 
     // 先加入购物车
     // this.orderService.postRequest(orderInterface.addCard, { goodsId }).subscribe((data: any) => {

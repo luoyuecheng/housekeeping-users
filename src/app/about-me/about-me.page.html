@@ -43,48 +43,48 @@
   </ion-card>
 
   <ion-card class="orders">
-    <ion-item (click)="handleItem('orders')">
+    <ion-item (click)="handleItem(orderStatus.all)">
       <ion-label>我的订单</ion-label>
       <ion-text class="right-allow">查看全部<ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
 
     <ion-grid>
       <ion-row>
-        <ion-col>
+        <ion-col (click)="handleItem(orderStatus.unpaid)">
           <ion-text><ion-icon name="time-outline"></ion-icon></ion-text>
-          <ion-text>待确认</ion-text>
+          <ion-text>未接单</ion-text>
         </ion-col>
 
-        <ion-col>
+        <ion-col (click)="handleItem(orderStatus.unserved)">
           <ion-text><ion-icon name="card-outline"></ion-icon></ion-text>
           <ion-text>待服务</ion-text>
         </ion-col>
 
-        <ion-col>
+        <ion-col (click)="handleItem(orderStatus.serving)">
           <ion-text><ion-icon name="card-outline"></ion-icon></ion-text>
-          <ion-text>待支付</ion-text>
+          <ion-text>服务中</ion-text>
         </ion-col>
 
-        <ion-col>
+        <ion-col (click)="handleItem(orderStatus.userCompleted)">
           <ion-text><ion-icon name="ellipsis-horizontal-circle-outline"></ion-icon></ion-text>
-          <ion-text>待评价</ion-text>
+          <ion-text>已完成</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
 
   <ion-card class="features">
-    <ion-item>
+    <ion-item (click)="handleItem()">
       <ion-label>购券订单</ion-label>
       <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="handleItem()">
       <ion-label>我的需求</ion-label>
       <ion-text class="right-allow">找保姆<ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="handleItem()">
       <ion-label>我的关注</ion-label>
       <ion-text class="right-allow">保姆/月嫂/育儿嫂<ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
@@ -96,19 +96,23 @@
       <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="handleItem()">
       <ion-label>我的店铺</ion-label>
       <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="handleItem()">
       <ion-label>入驻发布</ion-label>
       <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="handleItem()">
       <ion-label>帮助中心</ion-label>
       <ion-text class="right-allow"><ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
     </ion-item>
+  </ion-card>
+
+  <ion-card class="features">
+    <ion-button expand="full" (click)="signOut()">退出登录</ion-button>
   </ion-card>
 </ion-content>

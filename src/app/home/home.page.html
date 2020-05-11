@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-item class="header">
       <!-- <ion-label>{{ address }}</ion-label> -->
-      <ion-button>{{ address }}</ion-button>
+      <ion-button (click)="location()">{{ address }}</ion-button>
       <ion-searchbar></ion-searchbar>
       <!-- <ion-icon *ngIf="outline; else addOutline" name="close-outline" (click)="handleOutline(false)"></ion-icon>
       <ng-template #addOutline>

@@ -6,3 +6,67 @@
     </ion-item>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let order of orderList">
+    <ion-item>
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label (click)="handleService(order)">{{ order.goodsList[0].goodsName }}</ion-label>
+      <ion-text *ngIf="order.orderStatus === orderStatus.unpaid">等待接单</ion-text>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label>
+        <ion-text>{{ order.goodsName[0].detail }}</ion-text>
+        <p>开换锁</p>
+      </ion-label>
+    </ion-item> -->
+    <ion-text class="message">
+      <ion-icon name="time-outline"></ion-icon>
+      <ion-label>{{ order?.shipSn }}</ion-label>
+      <ion-text>服务时长: {{ order?.shipChannel }} 小时</ion-text>
+    </ion-text>
+    <ion-text class="message">
+      <ion-icon name="location-outline"></ion-icon>
+      <ion-text>{{ order?.address }}</ion-text>
+    </ion-text>
+    <ion-text class="message amount">
+      <ion-text class="bd1">直约预付金</ion-text>&nbsp;
+      <ion-label>已付金额: <ion-text>{{ order.goodsList[0].price }}</ion-text>元</ion-label>
+    </ion-text>
+    <ion-item *ngIf="order.orderStatus === orderStatus.unpaid">
+      <ion-button class="refuse" slot="end">未接单</ion-button>
+      <ion-button class="receive" slot="end" (click)="handleOrderStatus(order, orderStatus.unpaidUserCancel)">取消订单</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.unserved">
+      <ion-button class="refuse" slot="end">待服务</ion-button>
+      <ion-button class="receive" slot="end" (click)="handleOrderStatus(order, orderStatus.serving)">开始服务</ion-button>
+      <ion-button class="receive" slot="end" (click)="handleOrderStatus(order, orderStatus.userRefund)">申请退款</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.serving">
+      <ion-button class="refuse" slot="end">服务中</ion-button>
+      <ion-button class="receive" slot="end" (click)="handleOrderStatus(order, orderStatus.userCompleted)">完成服务</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.userRefund">
+      <ion-button class="refuse" slot="end">退单(待商家确认)</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.adminRefund">
+      <ion-button class="refuse" slot="end">已退款</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.unpaidUserCancel">
+      <ion-button class="refuse" slot="end">订单已取消</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.unpaidSysCancen">
+      <ion-button class="refuse" slot="end">订单过期</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.userCompleted">
+      <ion-button class="refuse" slot="end">已完成</ion-button>
+    </ion-item>
+    <ion-item *ngIf="order.orderStatus === orderStatus.adminCompleted">
+      <ion-button class="refuse" slot="end">已完成(系统自动)</ion-button>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-button class="refuse" slot="end" (click)="handleOrder('refuse')">拒单</ion-button>
+      <ion-button class="receive" slot="end" (click)="handleOrder('receive')">立即接单</ion-button>
+    </ion-item> -->
+  </ion-card>
+</ion-content>

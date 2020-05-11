@@ -4,6 +4,7 @@
       <ion-icon name="chevron-back-outline" (click)="handleBack()"></ion-icon>
       <ion-title>{{ title?.name }}</ion-title>
       <ion-text slot="end" *ngIf="title.key === 1" (click)="modify()">新增地址</ion-text>
+      <ion-text slot="end" *ngIf="title.key === 3" (click)="delete()">删除地址</ion-text>
     </ion-item>
   </ion-toolbar>
 </ion-header>

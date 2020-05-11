@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
-import { OrderService } from '../services/order.service';
+import { OrderService, Address } from '../services/order.service';
 import { orderInterface } from '../services/order.interface';
-
-export interface Address {
-  name: string; // 联系人
-  addressDetail: string; // 地址详情
-  tel: string; // 手机号
-  [key: string]: any;
-}
 
 @Component({
   selector: 'app-address',
@@ -47,8 +40,11 @@ export class AddressPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    // 获取地址列表
+    this.getAddressList();
   }
 
+  // 获取地址列表
   getAddressList() {
     this.orderService.getRequest(orderInterface.getAddressList).subscribe((data: any) => {
       if (!data || data.errno) {
@@ -59,6 +55,7 @@ export class AddressPage implements OnInit {
       const { list = [] } = addressData;
 
       this.addressList = list;
+      this.orderService.setAddressList(list);
     })
   }
 
@@ -79,11 +76,24 @@ export class AddressPage implements OnInit {
       }
     }
 
-    this.orderService.postRequest(orderInterface.saveAddress, this.addressDetail).subscribe((data: any) => {
+    const options = {
+      ...this.addressDetail,
+      province: '0',
+      city: '0',
+      county: '0',
+      areaCode: '0',
+      isDefault: false,
+    };
+
+    this.orderService.postRequest(orderInterface.saveAddress, options).subscribe(async (data: any) => {
       if (!data || data.errno) {
         return void 0;
       }
-      console.log('address', data)
+      await this.orderService.alertTip({
+        header: '编辑成功'
+      });
+
+      this.handleBack();
     })
   }
 
@@ -100,6 +110,33 @@ export class AddressPage implements OnInit {
     this.title = this.titleMap[3];
   }
 
+  // 删除地址
+  delete() {
+    this.orderService.alertTip({
+      header: '是否删除当前地址',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+        },
+        {
+          text: '确定',
+          handler: () => {
+            this.orderService.postRequest(orderInterface.deleteAddress,
+              { id: this.addressDetail.id }).subscribe(async (data: any) => {
+                if (!data || data.errno) {
+                  return void 0;
+                }
+
+                await this.orderService.alertTip({ header: '删除成功' });
+                this.handleBack();
+              })
+          }
+        }
+      ]
+    })
+  }
+
   handleBack() {
     if (this.title !== this.titleMap[1]) {
       this.title = this.titleMap[1];
@@ -108,6 +145,7 @@ export class AddressPage implements OnInit {
         tel: '',
         addressDetail: '',
       }
+      this.getAddressList();
       return void 0;
     }
 

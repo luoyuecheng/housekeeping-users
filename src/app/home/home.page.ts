@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Params } from '@angular/router';
-import {
-  NavController,
-} from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 import { SearchConfig } from './home.d';
 
 @Component({
@@ -55,7 +53,8 @@ export class HomePage {
   ];
 
   constructor(
-    public navCtrl: NavController,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
   ) { }
 
   handleOutline(outline: boolean) {
@@ -78,5 +77,16 @@ export class HomePage {
       default:
         this.navCtrl.navigateForward('/modal', { queryParams });
     }
+  }
+
+  async location() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    this.address = '广州';
   }
 }
