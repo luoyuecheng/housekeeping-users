@@ -148,16 +148,67 @@ export class OrderService {
         ...data,
       }
     }
-    return this.http.get(url, httpOptions);
+    return this.http.get(url, httpOptions).pipe(
+      tap((_: any) => {
+        if (!_) {
+          this.alertTip({
+            header: '请求失败',
+            message: '接口调用出错',
+          })
+          return void 0;
+        }
+        if (_.errno) {
+          this.alertTip({
+            header: '请求失败',
+            message: _.errmsg,
+          })
+          return void 0;
+        }
+      })
+    );
   }
 
   // 普通的 POST 接口
   postRequest(url: string, data?: any) {
-    return this.http.post(url, { ...data });
+    return this.http.post(url, { ...data }).pipe(
+      tap((_: any) => {
+        if (!_) {
+          this.alertTip({
+            header: '请求失败',
+            message: '接口调用出错',
+          })
+          return void 0;
+        }
+        if (_.errno) {
+          this.alertTip({
+            header: '请求失败',
+            message: _.errmsg,
+          })
+          return void 0;
+        }
+      })
+    );
   }
 
   // PUT 接口
   putRequest(url: string, data?: any) {
-    return this.http.put(url, { ...data });
+    return this.http.put(url, { ...data }).pipe(
+      tap((_: any) => {
+        if (!_) {
+          this.alertTip({
+            header: '请求失败',
+            message: '接口调用出错',
+          })
+          return void 0;
+        }
+        if (_.errno) {
+          this.alertTip({
+            header: '请求失败',
+            message: _.errmsg,
+          })
+          return void 0;
+        }
+      })
+    );
   }
 }
